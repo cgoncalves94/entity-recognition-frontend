@@ -10,24 +10,22 @@ function Login({ onLogin }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setErrorMessages([]); // Clear existing errors before the new login attempt
     try {
       const token = await authService.login(email, password);
       onLogin(token);
     } catch (error) {
+      // Handle the different types of errors here
       if (error.response) {
-        // General error (e.g., incorrect credentials)
-        if (typeof error.response.data.detail === 'string') {
+        // Handle validation errors from the server
+        if (Array.isArray(error.response.data.detail)) {
+          setErrorMessages(error.response.data.detail.map((e, index) => `${e.msg} (${index})`));
+        } else {
+          // Handle single error message from the server
           setErrorMessages([error.response.data.detail]);
         }
-        // Array of errors (e.g., validation errors)
-        else if (Array.isArray(error.response.data.detail)) {
-          setErrorMessages(error.response.data.detail.map(e => e.msg));
-        } else {
-          // If the error data is not in the expected format, show a generic message
-          setErrorMessages(['An unexpected error occurred.']);
-        }
       } else {
-        // Network error or error without a response
+        // Handle network error or error without a response
         setErrorMessages(['Network error or no error response.']);
       }
     }
@@ -81,9 +79,8 @@ function Login({ onLogin }) {
           </Button>
           {errorMessages.length > 0 && (
             <Box mt={2}>
-              {errorMessages.map((msg, index) => (
-                <Alert key={msg} severity="error" sx={{ mb: 2 }}>
-                {msg}
+              {errorMessages.map((error, index) => (
+                <Alert key={error} severity="error" sx={{ mb: 2 }}> {error}
                 </Alert>
               ))}
             </Box>

@@ -7,20 +7,20 @@ import {
   Container,
   Typography,
   Box,
-  CircularProgress,
+  LinearProgress,
   Paper,
 } from '@mui/material';
 
 function TextSubmission({ token }) {
   const [text, setText] = useState('');
   const [result, setResult] = useState(null);
-  const [loading, setLoading] = useState(false); // State to manage loading state
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setResult(null); // Reset result state to clear previous output
     setLoading(true); // Start loading
     try {
-      // Split the text by new lines and trim each line
       const texts = text.split('\n').map((line) => line.trim()).filter((line) => line);
       const response = await nlpService.processText(texts, token);
       setResult(response);
@@ -52,35 +52,24 @@ function TextSubmission({ token }) {
             onChange={(e) => setText(e.target.value)}
             variant="outlined"
           />
-          <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              disabled={loading} // Disable the button when loading
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Submit Text
-            </Button>
-            {loading && (
-              <CircularProgress
-                size={24}
-                sx={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  marginTop: '-12px',
-                  marginLeft: '-12px',
-                }}
-              />
-            )}
-          </Box>
-          {result && (
-            <Typography component="pre" variant="body2" sx={{ mt: 2, overflowX: 'auto' }}>
-              {JSON.stringify(result, null, 2)}
-            </Typography>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            disabled={loading}
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Submit Text
+          </Button>
+          {loading && (
+            <LinearProgress />
           )}
         </Box>
+        {!loading && result && (
+          <Typography component="pre" variant="body2" sx={{ mt: 2, overflowX: 'auto' }}>
+            {JSON.stringify(result, null, 2)}
+          </Typography>
+        )}
       </Paper>
     </Container>
   );
