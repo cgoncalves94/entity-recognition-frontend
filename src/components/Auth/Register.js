@@ -1,43 +1,32 @@
-// src/components/Auth/Login.js
 import React, { useState } from 'react';
-import authService from '../../services/authService';
 import { Button, TextField, Container, Typography, Box, Alert } from '@mui/material';
+import authService from '../../services/authService';
 
-/**
- * Renders a login form component.
- *
- * @param {Object} props - The component props.
- * @param {Function} props.onLogin - The callback function to be called when the user logs in successfully.
- * @returns {JSX.Element} The login form component.
- */
-function Login({ onLogin }) {
+function Register({onRegistered }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessages, setErrorMessages] = useState([]);
 
-  /**
-   * Handles the form submission.
-   *
-   * @param {Event} event - The form submission event.
-   */
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrorMessages([]); // Clear existing errors before the new login attempt
+    if (password !== confirmPassword) {
+      setErrorMessages(['Passwords do not match.']);
+      return;
+    }
+    setErrorMessages([]);
     try {
-      const token = await authService.login(email, password);
-      onLogin(token);
+      const registeredEmail = await authService.register(email, password);
+      alert(`Registration successful for ${registeredEmail}. Please log in.`);
+      onRegistered(); // Call the onRegistered callback after successful registration
     } catch (error) {
-      // Handle the different types of errors here
       if (error.response) {
-        // Handle validation errors from the server
         if (Array.isArray(error.response.data.detail)) {
-          setErrorMessages(error.response.data.detail.map((e, index) => `${e.msg} (${index})`));
+          setErrorMessages(error.response.data.detail.map((e) => e.msg));
         } else {
-          // Handle single error message from the server
           setErrorMessages([error.response.data.detail]);
         }
       } else {
-        // Handle network error or error without a response
         setErrorMessages(['Network error or no error response.']);
       }
     }
@@ -45,18 +34,10 @@ function Login({ onLogin }) {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
+      <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Typography component="h1" variant="h5">Register</Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          {/* Email and Password TextFields */}
           <TextField
             margin="normal"
             required
@@ -77,9 +58,21 @@ function Login({ onLogin }) {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            autoComplete="new-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="confirmPassword"
+            label="Confirm Password"
+            type="password"
+            id="confirm-password"
+            autoComplete="new-password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <Button
             type="submit"
@@ -87,13 +80,13 @@ function Login({ onLogin }) {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Register
           </Button>
+          {/* Error message display */}
           {errorMessages.length > 0 && (
             <Box mt={2}>
               {errorMessages.map((error, index) => (
-                <Alert key={error} severity="error" sx={{ mb: 2 }}> {error}
-                </Alert>
+                <Alert key={error} severity="error">{error}</Alert>
               ))}
             </Box>
           )}
@@ -103,4 +96,4 @@ function Login({ onLogin }) {
   );
 }
 
-export default Login;
+export default Register;

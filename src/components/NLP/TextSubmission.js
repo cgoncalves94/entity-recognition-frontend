@@ -11,11 +11,24 @@ import {
   Paper,
 } from '@mui/material';
 
+/**
+ * Component for submitting text for NLP processing.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.token - The authentication token.
+ * @returns {JSX.Element} The TextSubmission component.
+ */
 function TextSubmission({ token }) {
   const [text, setText] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Handles the form submission.
+   *
+   * @param {Event} event - The form submit event.
+   * @returns {Promise<void>} A Promise that resolves when the submission is processed.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
     setResult(null); // Reset result state to clear previous output
