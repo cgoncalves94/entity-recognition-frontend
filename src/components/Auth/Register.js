@@ -7,7 +7,12 @@ import {
     Typography,
     Box,
     Alert,
+    IconButton, 
+    InputAdornment 
 } from "@mui/material";
+
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+
 import authService from "../../services/authService";
 
 /**
@@ -24,6 +29,8 @@ function Register({ onRegistered }) {
     const [errorMessages, setErrorMessages] = useState([]);
     const [showSuccessAlert, setShowSuccessAlert] = useState(false);
     const [countdown, setCountdown] = useState(3); // Countdown starts at
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     // Use useEffect to start the countdown when showSuccessAlert is true
     useEffect(() => {
@@ -47,7 +54,6 @@ function Register({ onRegistered }) {
         setShowSuccessAlert(false); // Hide the alert
         onRegistered(); // Redirect immediately
     };
-
 
     /**
      * Handles the form submission for user registration.
@@ -110,28 +116,52 @@ function Register({ onRegistered }) {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="new-password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                      margin="normal"
+                      required
+                      fullWidth
+                      name="password"
+                      label="Password"
+                      type={showPassword ? "text" : "password"}
+                      id="password"
+                      autoComplete="new-password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={() => setShowPassword(!showPassword)}
+                              edge="end"
+                            >
+                              {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />               
                     <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="confirmPassword"
-                        label="Confirm Password"
-                        type="password"
-                        id="confirm-password"
-                        autoComplete="new-password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                      margin="normal"
+                      required
+                      fullWidth
+                      name="confirmPassword"
+                      label="Confirm Password"
+                      type={showConfirmPassword ? "text" : "password"}
+                      id="confirm-password"
+                      autoComplete="new-password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton
+                              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                              edge="end"
+                            >
+                              {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                     <Button
                         type="submit"
