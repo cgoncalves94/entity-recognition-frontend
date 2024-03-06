@@ -29,4 +29,5 @@ const nlpService = {
   },
 };
 
+// Export the nlpService
 export default nlpService;

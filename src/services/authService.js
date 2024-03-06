@@ -1,6 +1,7 @@
+// src/services/authService.js
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000/auth/users";
+const API_URL = "http://127.0.0.1:8000/auth/users"; // Update with your API URL
 
 // Add an interceptor to handle automatic token refresh on 401 response
 axios.interceptors.response.use(
@@ -127,4 +128,5 @@ const authService = {
     },
 };
 
+// Export the authService
 export default authService;

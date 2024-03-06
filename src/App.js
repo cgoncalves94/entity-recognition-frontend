@@ -1,85 +1,73 @@
-import React, { useState, useEffect } from "react";
-import { createTheme, ThemeProvider, CssBaseline, Button, Box } from "@mui/material";
-import Login from "./components/Auth/Login";
-import Register from "./components/Auth/Register";
-import TextSubmission from "./components/NLP/TextSubmission";
-import authService from "./services/authService";
+// src/App.js
+import React, { useState, useEffect } from 'react';
+import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import AuthPage from './pages/AuthPage';
+import NLPPage from './pages/TextSubmissionPage';
+import authService from './services/authService';
 
+// Create a theme instance
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#556cd6",
+      main: '#556cd6',
     },
     secondary: {
-      main: "#19857b",
+      main: '#19857b',
     },
     error: {
-      main: "#ff1744",
+      main: '#ff1744',
     },
     background: {
-      default: "#fff",
+      default: '#fff',
     },
   },
 });
 
+/**
+ * The main component of the application.
+ * @returns {JSX.Element} The rendered App component.
+ */
 function App() {
   const [token, setToken] = useState(null);
-  const [isRegistering, setIsRegistering] = useState(false);
 
+  // Check for a stored token when the component mounts
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
     }
   }, []);
 
+  // Handle the login event
   const handleLogin = (newToken) => {
     setToken(newToken);
   };
 
+  // Handle the logout event
   const handleLogout = async () => {
     try {
       await authService.logout();
       setToken(null);
-      localStorage.removeItem("token");
+      localStorage.removeItem('token');
     } catch (error) {
-      console.error("Logout failed", error);
+      console.error('Logout failed', error);
     }
   };
 
-  // New function to handle successful registration
-  const handleRegistrationSuccess = () => {
-    setIsRegistering(false); // Redirect user to the login form
-  };
-
+  // Render the application
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div>
         {!token ? (
-          <>
-            {isRegistering ? (
-              <Register onLogin={handleLogin} onRegistered={handleRegistrationSuccess} />
-            ) : (
-              <Login onLogin={handleLogin} />
-            )}
-            <Box textAlign="center" mt={2}>
-              <Button onClick={() => setIsRegistering(!isRegistering)} color="inherit">
-                {isRegistering ? "Already have an account? Log in" : "Need an account? Register"}
-              </Button>
-            </Box>
-          </>
+          <AuthPage onLogin={handleLogin} />
         ) : (
-          <>
-            <Button onClick={handleLogout} color="inherit">
-              Logout
-            </Button>
-            <TextSubmission token={token} />
-          </>
+          <NLPPage token={token} onLogout={handleLogout} />
         )}
       </div>
     </ThemeProvider>
   );
 }
 
+// Export the App component
 export default App;

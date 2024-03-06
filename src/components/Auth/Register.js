@@ -1,3 +1,4 @@
+// src/components/Auth/Register.js
 import React, { useState, useEffect } from "react";
 import {
     Button,
@@ -9,6 +10,13 @@ import {
 } from "@mui/material";
 import authService from "../../services/authService";
 
+/**
+ * Renders a registration form component.
+ *
+ * @param {Object} props - The component props.
+ * @param {Function} props.onRegistered - The callback function to be called when registration is successful.
+ * @returns {JSX.Element} The rendered registration form component.
+ */
 function Register({ onRegistered }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,6 +25,7 @@ function Register({ onRegistered }) {
     const [showSuccessAlert, setShowSuccessAlert] = useState(false);
     const [countdown, setCountdown] = useState(3); // Countdown starts at
 
+    // Use useEffect to start the countdown when showSuccessAlert is true
     useEffect(() => {
         let timer;
         // Start countdown when showSuccessAlert is true
@@ -33,11 +42,19 @@ function Register({ onRegistered }) {
         return () => clearInterval(timer);
     }, [showSuccessAlert, countdown, onRegistered]);
 
+    // Handle the OK button click on the success alert
     const handleOkClick = () => {
         setShowSuccessAlert(false); // Hide the alert
         onRegistered(); // Redirect immediately
     };
 
+
+    /**
+     * Handles the form submission for user registration.
+     *
+     * @param {Event} event - The form submission event.
+     * @returns {Promise<void>} - A promise that resolves when the registration is successful.
+     */
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (password !== confirmPassword) {
@@ -65,6 +82,7 @@ function Register({ onRegistered }) {
         }
     };
 
+    // Render the registration form
     return (
         <Container component="main" maxWidth="xs">
             <Box
@@ -153,4 +171,5 @@ function Register({ onRegistered }) {
     );
 }
 
+// Export the Register component
 export default Register;

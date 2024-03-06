@@ -43,6 +43,7 @@ function TextSubmission({ token }) {
     setLoading(false); // End loading
   };
 
+  // Render the text submission form
   return (
     <Container component="main" maxWidth="md">
       <Paper elevation={3} sx={{ p: 2, marginTop: 8 }}>
@@ -88,4 +89,5 @@ function TextSubmission({ token }) {
   );
 }
 
+// Export the TextSubmission component
 export default TextSubmission;

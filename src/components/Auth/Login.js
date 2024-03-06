@@ -43,6 +43,7 @@ function Login({ onLogin }) {
     }
   };
 
+  // Render the login form  
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -103,4 +104,5 @@ function Login({ onLogin }) {
   );
 }
 
+// Export the login form component
 export default Login;
