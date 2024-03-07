@@ -11,8 +11,7 @@ axios.interceptors.response.use(
         if (error.response.status === 401 && !originalRequest._retry) {
             // Check if the request was for the login or refresh token endpoint
             if (
-                originalRequest.url.endsWith("/tokens") ||
-                originalRequest.url.endsWith("/login")
+                originalRequest.url.endsWith("/tokens")
             ) {
                 // It's a login or refresh token request, so don't retry
                 return Promise.reject(error);
