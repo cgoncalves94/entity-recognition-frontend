@@ -18,7 +18,7 @@ const nlpService = {
   processText: async (textsArray, token) => {
     try {
       const response = await axios.post(
-        'http://127.0.0.1:8000/nlp/process/',
+        '34.30.10.247:8000/nlp/process/',
         { texts: textsArray },
         { headers: { Authorization: `Bearer ${token}` } }
       );

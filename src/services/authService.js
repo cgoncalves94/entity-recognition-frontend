@@ -1,7 +1,7 @@
 // src/services/authService.js
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000/auth/users"; // Update with your API URL
+const API_URL = "34.30.10.247:8000/auth/users"; // Update with your API URL
 
 // Add an interceptor to handle automatic token refresh on 401 response
 axios.interceptors.response.use(
@@ -49,13 +49,16 @@ axios.interceptors.response.use(
 const authService = {
     // Add register method
     register: async (email, password) => {
-      try {
-        const response = await axios.post(`${API_URL}`, { email, password });
-        // Assuming backend responds with a confirmation of email, not a token
-        return response.data.email; // Returning email for confirmation
-      } catch (error) {
-        throw error;
-      }
+        try {
+            const response = await axios.post(`${API_URL}`, {
+                email,
+                password,
+            });
+            // Assuming backend responds with a confirmation of email, not a token
+            return response.data.email; // Returning email for confirmation
+        } catch (error) {
+            throw error;
+        }
     },
 
     /**
