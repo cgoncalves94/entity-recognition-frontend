@@ -92,7 +92,7 @@ const authService = {
     },
 
     /**
-     * Refreshes the access token.
+     * Refreshes the access token using the refresh token.
      * @memberof authService
      * @async
      * @returns {Promise<string>} The refreshed access token.
