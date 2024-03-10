@@ -1,4 +1,4 @@
-# NLP Frontend for Tech Entity Recognition
+# Frontend for Tech Entity Recognition
 
 This React application serves as the frontend interface for the Tech Entity Recognition project, providing a user-friendly web interface for submitting text for NLP processing, including technology entity recognition, topic classification, and technology recommendations. It interacts with the FastAPI backend to deliver a seamless experience for users looking to leverage NLP and ML techniques in technology analysis.
 
