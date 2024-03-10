@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# NLP Frontend for Tech Entity Recognition
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This React application serves as the frontend interface for the Tech Entity Recognition project, providing a user-friendly web interface for submitting text for NLP processing, including technology entity recognition, topic classification, and technology recommendations. It interacts with the FastAPI backend to deliver a seamless experience for users looking to leverage NLP and ML techniques in technology analysis.
 
-## Available Scripts
+## Key Features
 
-In the project directory, you can run:
+- **Text Submission for NLP Processing**: Allows users to input text and submit it for backend NLP processing.
+- **User Authentication**: Supports user registration and login, securing access to NLP functionalities.
+- **Responsive UI:**: Built with Material UI, offering a responsive and accessible user interface.
+- **Deployment on GitHub Pages**: Utilizes GitHub Actions for CI/CD, enabling automated deployment to GitHub Pages.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Deployment Process
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **GitHub Actions Workflow**: Automated deployment is triggered by every push to the main branch.
+2. **Build and Deployment**: Utilizes npm run build for production build generation and gh-pages for deployment to GitHub Pages.
 
-### `npm test`
+For more details on our CI/CD process, refer to the package.json file's scripts section in our repository.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Installation and Running the Application
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Ensure you have Node.js and npm installed. Then, to run the application locally, execute:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm start
+```
+This command installs all dependencies and starts the development server. The application will be accessible at http://localhost:3000.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The project is structured as follows:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+-   `src/`: Contains the source code of the application.
+    -   `components/`:  UI components, including NLP text submission and authentication forms.
+    -   `services/`: Services for interacting with the backend API, including `authService` and `nlpService`.
+    -   `pages/`: Page components, such as the authentication page and the NLP processing page.
+-   `public/`: Contains static assets and the index.html file.
+-   `package.json`: Defines project dependencies and scripts for building and deploying the application.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Running Tests
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To run automated tests, use the following command:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+npm test
+```
+This command executes the test suite configured with Jest and React Testing Library, ensuring the application's components function as expected.
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Conclusion
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The NLP Frontend for Tech Entity Recognition enhances the backend's capabilities by providing an intuitive interface for text submission and user interaction. It leverages modern web technologies and CI/CD practices for efficient development and deployment, offering a comprehensive solution for technology analysis through NLP.
