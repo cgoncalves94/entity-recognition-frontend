@@ -53,4 +53,4 @@ This command executes the test suite configured with Jest and React Testing Libr
 
 ## Conclusion
 
-The NLP Frontend for Tech Entity Recognition enhances the backend's capabilities by providing an intuitive interface for text submission and user interaction. It leverages modern web technologies and CI/CD practices for efficient development and deployment, offering a comprehensive solution for technology analysis through NLP.
+The Frontend for Tech Entity Recognition enhances the backend's capabilities by providing an intuitive interface for text submission and user interaction. It leverages modern web technologies and CI/CD practices for efficient development and deployment, offering a comprehensive solution for technology analysis through NLP.
