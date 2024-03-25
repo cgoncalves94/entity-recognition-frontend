@@ -22,6 +22,8 @@ function TextSubmission({ token }) {
   const [text, setText] = useState('');
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [blueprints, setBlueprints] = useState(null);
+
 
   /**
    * Handles the form submission.
@@ -31,6 +33,7 @@ function TextSubmission({ token }) {
    */
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setBlueprints(null); // Clear previous blueprints upon new text submission
     setResult(null); // Reset result state to clear previous output
     setLoading(true); // Start loading
     try {
@@ -42,6 +45,25 @@ function TextSubmission({ token }) {
     }
     setLoading(false); // End loading
   };
+  
+
+  /**
+   * Handles the process of finding blueprints.
+   * @async
+   * @function handleFindBlueprints
+   * @returns {Promise<void>} A promise that resolves when the blueprints are matched.
+   */
+  const handleFindBlueprints = async () => {
+    setLoading(true); // Start loading for blueprint matching
+    try {
+      const matchedBlueprints = await nlpService.matchBlueprints(result, token);
+      setBlueprints(matchedBlueprints);
+    } catch (error) {
+      console.error('Error matching blueprints:', error);
+    }
+    setLoading(false); // End loading for blueprint matching
+  };
+  
 
   // Render the text submission form
   return (
@@ -80,8 +102,23 @@ function TextSubmission({ token }) {
           )}
         </Box>
         {!loading && result && (
+          <>
+            <Typography component="pre" variant="body2" sx={{ mt: 2, overflowX: 'auto' }}>
+              {JSON.stringify(result, null, 2)}
+            </Typography>
+            <Button
+              onClick={handleFindBlueprints}
+              fullWidth
+              variant="contained"
+              sx={{ mt: 2, mb: 2 }}
+            >
+              Find Blueprints
+            </Button>
+          </>
+        )}
+        {!loading && blueprints && (
           <Typography component="pre" variant="body2" sx={{ mt: 2, overflowX: 'auto' }}>
-            {JSON.stringify(result, null, 2)}
+            {JSON.stringify(blueprints, null, 2)}
           </Typography>
         )}
       </Paper>
