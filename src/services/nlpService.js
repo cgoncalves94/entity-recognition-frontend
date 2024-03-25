@@ -40,7 +40,7 @@ const nlpService = {
   matchBlueprints: async (recommendations, token) => {
     try {
       const response = await axios.post(
-        'https://tech-entity-recognition.fly.dev/match-blueprints/',
+        'https://tech-entity-recognition.fly.dev/nlp/match-blueprints/',
         recommendations,
         { headers: { Authorization: `Bearer ${token}` } }
       );
