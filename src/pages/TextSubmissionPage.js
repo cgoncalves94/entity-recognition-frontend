@@ -12,7 +12,7 @@ import { Button, Container, Box } from '@mui/material';
  */
 function NLPPage({ token, onLogout }) {
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="lg">
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
         <Button onClick={onLogout} color="inherit" variant="contained">
           Logout
