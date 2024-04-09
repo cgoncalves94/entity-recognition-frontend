@@ -6,7 +6,7 @@ This React application serves as the frontend interface for the Tech Entity Reco
 
 - **Text Submission for NLP Processing**: Allows users to input text and submit it for backend NLP processing.
 - **User Authentication**: Supports user registration and login, securing access to NLP functionalities.
-- **Responsive UI:**: Built with Material UI, offering a responsive and accessible user interface.
+- **Responsive UI**: Built with Material UI, offering a responsive and accessible user interface.
 - **Deployment on GitHub Pages**: Utilizes GitHub Actions for CI/CD, enabling automated deployment to GitHub Pages.
 
 
