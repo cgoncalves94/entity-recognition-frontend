@@ -18,7 +18,7 @@ const nlpService = {
     processText: async (textsArray, token) => {
         try {
             const response = await axios.post(
-                "http://127.0.0.1:16000/nlp/process/",
+                "https://tech-entity-recognition.fly.dev/nlp/process/",
                 { texts: textsArray },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -40,7 +40,7 @@ const nlpService = {
     matchBlueprints: async (recommendations, token) => {
         try {
             const response = await axios.post(
-                "http://127.0.0.1:16000/nlp/match-blueprints/",
+                "https://tech-entity-recognition.fly.dev/nlp/match-blueprints/",
                 recommendations,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
