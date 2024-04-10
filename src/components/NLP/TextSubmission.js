@@ -51,18 +51,19 @@ function TextSubmission({ token }) {
     setLoading(false);
   };
 
-  /**
-   * Generates a recommendation text based on the input result.
-   * @returns {string} The generated recommendation text.
-   */
-  const generateRecommendationText = () => {
-    if (!result || !result.length) return '';
+/**
+ * Generates a recommendation text based on the input result.
+ * @returns {string} The generated recommendation text.
+ */
+const generateRecommendationText = () => {
+  if (!result || !result.length) return '';
 
-    const recommendations = result[0].recommendations.map(rec => rec.recommendation);
-    const recommendationText = recommendations.join(', ');
+  const allRecommendations = result.flatMap(item => item.recommendations);
+  const uniqueRecommendations = Array.from(new Set(allRecommendations.map(rec => rec.recommendation)));
+  const recommendationText = uniqueRecommendations.join(', ');
 
-    return `Based on your input, the following entities are recommended: ${recommendationText}. Would you like to match these against existing blueprints?`;
-  };
+  return `Based on your input, the following entities are recommended: ${recommendationText}. Would you like to match these against existing blueprints?`;
+};
 
   /**
    * Handles the click event for a blueprint.
