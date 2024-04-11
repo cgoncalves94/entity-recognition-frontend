@@ -10,8 +10,6 @@
         "@mui/base": "^5.0.0-beta.38",
         "@mui/icons-material": "^5.15.11",
         "@mui/material": "^5.15.11",
-        "@testing-library/jest-dom": "^5.17.0",
-        "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
         "axios": "^1.6.7",
         "react": "^18.2.0",
@@ -46,9 +44,26 @@
         ]
     },
     "devDependencies": {
+        "@babel/core": "^7.24.4",
         "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "@babel/preset-env": "^7.24.4",
+        "@babel/preset-react": "^7.24.1",
+        "@testing-library/jest-dom": "^6.4.2",
+        "@testing-library/react": "^15.0.1",
+        "babel-jest": "^29.7.0",
         "gh-pages": "^6.1.1",
         "webpack": "^5.90.3",
         "webpack-dev-server": "^4.15.1"
-    }
+    },
+    "jest": {
+      "transform": {
+        "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+      },
+      "moduleNameMapper": {
+        "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+      },
+      "transformIgnorePatterns": [
+        "/node_modules/(?!axios).+\\.js$"
+      ]
+    }    
 }

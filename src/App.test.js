@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders AuthPage when not authenticated', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const authPageElements = screen.getAllByText(/Sign in/i);
+  expect(authPageElements.length).toBe(2);
 });
