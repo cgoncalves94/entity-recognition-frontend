@@ -1,7 +1,7 @@
 // src/services/authService.js
 import axios from "axios";
 
-const API_URL = "https://tech-entity-recognition.fly.dev/auth/users"; // Update with your API URL
+const API_URL = "https://ers-dev.warestack.com/auth/users"; // Update with your API URL
 
 // Add an interceptor to handle automatic token refresh on 401 response
 axios.interceptors.response.use(
