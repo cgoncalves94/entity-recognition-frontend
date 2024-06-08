@@ -1,7 +1,7 @@
 // src/services/nlpService.js
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/nlp/"; // Update with your API URL
+const API_URL = "http://localhost:8000/nlp/"; // Update with your API URL
 
 /**
  * Service for processing text using NLP (Natural Language Processing).
