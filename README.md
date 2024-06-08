@@ -1,6 +1,6 @@
 # Frontend for Tech Entity Recognition
 
-This React application serves as the frontend interface for the Tech Entity Recognition project, providing a user-friendly web interface for submitting text for NLP processing, including technology entity recognition, topic classification, and technology recommendations. It interacts with the FastAPI backend to deliver a seamless experience for users looking to leverage NLP and ML techniques in technology analysis.
+This React application serves as the frontend interface for the Tech Entity Recognition project, providing a user-friendly web interface for submitting text for NLP processing, including technology entity recognition, topic classification, and technology recommendations. It interacts with the FastAPI backend to deliver a seamless experience for users looking to leverage NLP and ML techniques in technology analysis. This project was developed as part of my BSc Computer Science degree at Birkbeck University.
 
 ## Key Features
 
@@ -50,7 +50,16 @@ npm test
 ```
 This command executes the test suite configured with Jest and React Testing Library, ensuring the application's components function as expected.
 
+## Contributing
 
-## Conclusion
+Contributions are welcome! Please follow these steps:
 
-The Frontend for Tech Entity Recognition enhances the backend's capabilities by providing an intuitive interface for text submission and user interaction. It leverages modern web technologies and CI/CD practices for efficient development and deployment, offering a comprehensive solution for technology analysis through NLP.
+1. Fork the repository on GitHub.
+2. Clone the forked repository to your machine.
+3. Create a new branch for your changes.
+4. Make changes and test.
+5. Submit a pull request with a comprehensive description of changes.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
