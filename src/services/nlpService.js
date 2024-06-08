@@ -1,6 +1,8 @@
 // src/services/nlpService.js
 import axios from "axios";
 
+const API_URL = "http://localhost:3000/nlp/"; // Update with your API URL
+
 /**
  * Service for processing text using NLP (Natural Language Processing).
  * @namespace nlpService
@@ -18,7 +20,7 @@ const nlpService = {
     processText: async (textsArray, token) => {
         try {
             const response = await axios.post(
-                "https://ers-dev.warestack.com/nlp/process/",
+                `${API_URL}/process/`,
                 { texts: textsArray },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -40,7 +42,7 @@ const nlpService = {
     matchBlueprints: async (recommendations, token) => {
         try {
             const response = await axios.post(
-                "https://ers-dev.warestack.com/nlp/match-blueprints/",
+                `${API_URL}/blueprints/`,
                 recommendations,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
