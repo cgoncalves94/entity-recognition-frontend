@@ -2,7 +2,7 @@
     "name": "nlp-frontend",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://cgoncalves94.github.io/entity-recognition-service",
+    "homepage": "https://cgoncalves94.github.io/entity-recognition-frontend",
     "dependencies": {
         "@emotion/react": "^11.11.4",
         "@emotion/styled": "^11.11.0",
@@ -18,9 +18,9 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "start": "PUBLIC_URL=https://cgoncalves94.github.io/entity-recognition-service react-scripts start",
-        "build": "PUBLIC_URL=https://cgoncalves94.github.io/entity-recognition-service react-scripts build",
-        "test": "PUBLIC_URL=https://cgoncalves94.github.io/entity-recognition-service react-scripts test",
+        "start": "PUBLIC_URL=https://cgoncalves94.github.io/entity-recognition-frontend react-scripts start",
+        "build": "PUBLIC_URL=https://cgoncalves94.github.io/entity-recognition-frontend react-scripts build",
+        "test": "PUBLIC_URL=https://cgoncalves94.github.io/entity-recognition-frontend react-scripts test",
         "eject": "react-scripts eject",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build"
@@ -56,14 +56,14 @@
         "webpack-dev-server": "^4.15.1"
     },
     "jest": {
-      "transform": {
-        "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
-      },
-      "moduleNameMapper": {
-        "^.+\\.(css|less|scss)$": "identity-obj-proxy"
-      },
-      "transformIgnorePatterns": [
-        "/node_modules/(?!axios).+\\.js$"
-      ]
-    }    
+        "transform": {
+            "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+        },
+        "moduleNameMapper": {
+            "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+        },
+        "transformIgnorePatterns": [
+            "/node_modules/(?!axios).+\\.js$"
+        ]
+    }
 }
